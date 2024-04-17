@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speed Check</title>
+    <style>
+        body {
+            background-color: #c4c0c0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2bb3ce;
+            color: #fff;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Speed Check</h2>
+    <p>Enter the driver's speed:</p>
+    <input type="number" id="speed" placeholder="Enter speed in km/h">
+    <br>
+    <button onclick="checkSpeed()">Check Speed</button>
+    <p id="result"></p>
+
+    <script>
+        function checkSpeed() {
+            var speed = document.getElementById("speed").value;
+            if (speed < 70) {
+                document.getElementById("result").innerHTML = "Good Safe Driving";
+            } else if (speed >= 70 && speed <= 120) {
+                var penaltyPoints = Math.floor((speed - 70) / 5);
+                document.getElementById("result").innerHTML = "Speed Limit Crossed by Penalty Point: " + penaltyPoints;
+            } else {
+                document.getElementById("result").innerHTML = "License Suspended";
+            }
+        }
+    </script>
+</body>
+</html>

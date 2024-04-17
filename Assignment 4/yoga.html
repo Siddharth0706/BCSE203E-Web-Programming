@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>International Yoga Day</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    text-align: center;
+            background-color: #c4c0c0;
+            max-width: 500px;
+            margin: 0 auto;
+}
+  .container { 
+    max-width: 800px; 
+    margin: auto; 
+    padding: 20px; 
+}
+  .hidden { 
+    display: none; 
+}
+  .slider { 
+    width: 100%; 
+    overflow: hidden; 
+}
+  .slides { 
+    display: flex; 
+}
+  .slide { 
+    min-width: 100%; 
+    transition: all 0.5s; 
+}
+  button { 
+    padding: 10px 20px; 
+    margin: 10px; 
+    cursor: pointer; 
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>International Yoga Day</h1>
+  
+  <div id="slider" class="slider">
+    <div class="slides">
+      <div class="slide"><img src="yoga1.jpeg" alt="Yoga Pose 1"></div>
+      <div class="slide"><img src="yoga2.jpeg" alt="Yoga Pose 2"></div>
+      <div class="slide"><img src="yoga3.jpeg" alt="Yoga Pose 3"></div>
+    </div>
+  </div>
+  <button onclick="prevSlide()">Previous</button>
+  <button onclick="nextSlide()">Next</button>
+  
+  <h2 onclick="toggleVisibility('discountSection')">Click to Show/Hide Discounts</h2>
+  <div id="discountSection" class="hidden">
+    <p>25% discount for government employees</p>
+    <p>50% discount for students</p>
+  </div>
+  
+  <button onclick="generatePassword()">Generate Random Password</button>
+  <p id="password"></p>
+  
+  <form id="registrationForm">
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <button type="button" onclick="displayFormData()">Submit</button>
+  </form>
+  <div id="formDataDisplay" class="hidden"></div>
+  
+  <h3>Bill Generation</h3>
+  <p>Enter the original bill amount:</p>
+  <input type="number" id="billAmount" placeholder="Bill Amount">
+  <p>Select the customer type:</p>
+  <select id="customerType">
+    <option value="none">Select Type</option>
+    <option value="employee">Government Employee</option>
+    <option value="student">Student</option>
+  </select>
+  <button onclick="generateBill()">Generate Bill</button>
+  <div id="bill"></div>
+</div>
+
+<script>
+  let slideIndex = 0;
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    if (index >= slides.length) slideIndex = 0;
+    if (index < 0) slideIndex = slides.length - 1;
+    for (let slide of slides) {
+      slide.style.display = 'none';
+    }
+    slides[slideIndex].style.display = 'block';
+  }
+  function nextSlide() {
+    showSlide(++slideIndex);
+  }
+  function prevSlide() {
+    showSlide(--slideIndex);
+  }
+  showSlide(slideIndex);
+  
+  function toggleVisibility(elementId) {
+    const element = document.getElementById(elementId);
+    element.classList.toggle('hidden');
+  }
+  
+  function generatePassword() {
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let passwordLength = 8;
+    let password = '';
+    for (let i = 0; i < passwordLength; i++) {
+      let randomNumber = Math.floor(Math.random() * chars.length);
+      password += chars.substring(randomNumber, randomNumber +1);
+    }
+    document.getElementById('password').textContent = password;
+  }
+  
+  function displayFormData() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const formDataDisplay = document.getElementById('formDataDisplay');
+    formDataDisplay.innerHTML = `Name: ${name}<br>Email: ${email}`;
+    formDataDisplay.classList.remove('hidden');
+  }
+  
+  function generateBill() {
+    const billAmount = parseFloat(document.getElementById('billAmount').value);
+    const customerType = document.getElementById('customerType').value;
+    let finalAmount = billAmount;
+    
+    if (customerType === 'employee') {
+      finalAmount *= 0.75;
+    } else if (customerType === 'student') {
+      finalAmount *= 0.5;
+    }
+    
+    document.getElementById('bill').innerHTML = `Original Amount: ${billAmount.toFixed(2)}<br>Final Amount after Discount: ${finalAmount.toFixed(2)}`;
+  }
+</script>
+</body>
+</html>

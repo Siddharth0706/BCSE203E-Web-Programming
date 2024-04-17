@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wave Array</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+            background-color: #c4c0c0;
+			max-width: 500px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		h1 {
+			margin-top: 50px;
+		}
+		form {
+			margin-top: 30px;
+		}
+		input[type="text"] {
+			padding: 10px;
+			font-size: 18px;
+			width: 100%;
+		}
+		button {
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color: #5b16ca;
+			color: white;
+			margin-top: 10px;
+		}
+		#result {
+			margin-top: 30px;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Convert Unsorted Array to Wave Array</h1>
+	<form id="array-form">
+		<input type="text" id="array-input" value="" />
+		<button type="button" id="convert-button">Convert</button>
+	</form>
+	<div id="result"></div>
+	<script>
+		document.getElementById('convert-button').addEventListener('click', function() {
+			var input = document.getElementById('array-input').value;
+			var arr = input.split(' ').map(Number);
+			var waveArray = convertToWaveArray(arr);
+			document.getElementById('result').innerText = 'Wave Array: ' + waveArray.join(' ');
+		});
+		function convertToWaveArray(arr) {
+			for (var i = 0; i < arr.length - 1; i += 2) {
+				if (i === 0) {
+					if (arr[i] < arr[i + 1]) {
+						swap(arr, i, i + 1);
+					}
+				} else if (arr[i] < arr[i - 1]) {
+					swap(arr, i, i - 1);
+				} else if (arr[i] < arr[i + 1]) {
+					swap(arr, i, i + 1);
+				}
+			}
+			return arr;
+		}
+		function swap(arr, i, j) {
+			var temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+	</script>
+</body>
+</html>

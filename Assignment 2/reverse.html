@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Number Reverse</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+      background-color: #c4c0c0;
+			max-width: 500px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		h1 {
+			margin-top: 50px;
+		}
+		form {
+			margin-top: 30px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			font-size: 18px;
+			width: 100%;
+		}
+		button {
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color:#5b16ca;
+			color: #fff;
+			margin-top: 10px;
+		}
+		#result {
+			margin-top: 30px;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Reverse a Number</h1>
+	<form id="number-form">
+		<input type="number" id="number-input" />
+		<button type="button" id="reverse-button">Reverse Number</button>
+	</form>
+	<div id="result"></div>
+	<script>
+		document.getElementById('reverse-button').addEventListener('click', function() {
+			var num = document.getElementById('number-input').value;
+			var reversedNum = reverseNumber(num);
+			document.getElementById('result').innerText = 'Reversed Number: ' + reversedNum;
+		});
+
+		function reverseNumber(num) {
+			return parseInt(num.toString().split('').reverse().join(''), 10);
+		}
+	</script>
+</body>
+</html>

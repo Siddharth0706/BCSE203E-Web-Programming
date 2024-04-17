@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #c4c0c0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .score {
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors</h1>
+    <p>Choose your hand:</p>
+    <button onclick="playGame('rock')">Rock</button>
+    <button onclick="playGame('paper')">Paper</button>
+    <button onclick="playGame('scissors')">Scissors</button>
+    <div class="score">
+        <p>Your score: <span id="userScore">0</span></p>
+        <p>Computer score: <span id="computerScore">0</span></p>
+    </div>
+    <div class="result">
+        <p id="winner"></p>
+    </div>
+    <button onclick="resetGame()">Reset</button>
+    <script>
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+
+        function determineWinner(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+                return 'It\'s a tie!';
+            }
+            if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'paper' && computerChoice === 'rock') ||
+                (userChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                return 'You win!';
+            } else {
+                return 'You lose.';
+            }
+        }
+
+        function updateScore(winner) {
+            const userScoreElement = document.getElementById('userScore');
+            const computerScoreElement = document.getElementById('computerScore');
+            if (winner === 'You win!') {
+                userScoreElement.textContent = parseInt(userScoreElement.textContent) + 1;
+            } else if (winner === 'You lose.') {
+                computerScoreElement.textContent = parseInt(computerScoreElement.textContent) + 1;
+            }
+        }
+
+        function playGame(userChoice) {
+            const computerChoice = getComputerChoice();
+            const winner = determineWinner(userChoice, computerChoice);
+            document.getElementById('winner').textContent = winner;
+            updateScore(winner);
+        }
+
+        function resetGame() {
+            document.getElementById('userScore').textContent = '0';
+            document.getElementById('computerScore').textContent = '0';
+            document.getElementById('winner').textContent = '';
+        }
+    </script>
+</body>
+</html>

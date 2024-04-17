@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Income Tax Calculator</title>
+  </head>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #c4c0c0;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    h1 {
+        margin-top: 50px;
+    }
+    form {
+         margin-top: 30px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        font-size: 18px;
+        width: 100%;
+    }
+    input[type="button"] { 
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #5b16ca;
+        color: white;
+        margin-top: 10px;
+    }
+</style>
+  <body>
+    <h1>Income Tax Calculator</h1>
+    <form id="taxForm">
+      <label for="income">Enter Yearly Income(in $):</label><br>
+      <input type="text" id="income" name="income"><br>
+      <label for="tax">Your Income Tax is(in $):</label><br>
+      <input type="text" id="tax" name="tax" readonly><br>
+      <input type="button" value="Calculate Tax" onclick="calculateTax()">
+    </form>
+  </body>
+  <script>
+    function calculateTax() {
+      var income = document.getElementById("income").value;
+      var tax;
+
+      if (income <= 2000) {
+        tax = 0;
+      } else if (income <= 20000) {
+        tax = 0.04 * (income - 2000);
+      } else if (income <= 40000) {
+        tax = 720 + 0.08 * (income - 20000);
+      } else if (income <= 80000) {
+        tax = 2320 + 0.16 * (income - 40000);
+      } else if (income <= 120000) {
+        tax = 8720 + 0.24 * (income - 80000);
+      } else {
+        tax = 18320 + 0.32 * (income - 120000);
+      }
+
+      document.getElementById("tax").value = tax;
+    }
+  </script>
+</html>

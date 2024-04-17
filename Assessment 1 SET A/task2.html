@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Feedback Form</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <form action="#" method="post">
+        <h2>Game Feedback Form</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number" required>
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+        <fieldset>
+            <legend>Rate the game:</legend>
+            <label><input type="radio" name="rating" value="1"> 1 - Poor</label>
+            <label><input type="radio" name="rating" value="2"> 2 - Fair</label>
+            <label><input type="radio" name="rating" value="3"> 3 - Average</label>
+            <label><input type="radio" name="rating" value="4"> 4 - Good</label>
+            <label><input type="radio" name="rating" value="5"> 5 - Excellent</label>
+        </fieldset>
+
+        <label for="improvements">Suggestions for improvements:</label>
+        <textarea id="improvements" name="improvements" rows="4"></textarea>
+
+        <label><input type="checkbox" name="subscribe"> Subscribe to newsletter</label>
+
+        <div class="buttons">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd Even Checker</title>
+    <style>
+        body {
+            background-color: #c4c0c0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #16caa9;
+            color: #fff;
+            border-radius: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+    <script>
+        function checkOddEven() {
+            let num = parseInt(document.getElementById("numberInput").value);
+            let result;
+            if (num % 2 === 0) {
+                result = "Even";
+            } else {
+                result = "Odd";
+            }
+            document.getElementById("result").innerText = `The number ${num} is ${result}.`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Odd Even Checker</h1>
+    <label for="numberInput">Enter a number:</label>
+    <input type="number" id="numberInput">
+    <button onclick="checkOddEven()">Check</button>
+    <div id="result"></div>
+</body>
+</html>

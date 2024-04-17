@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BMI Calculator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+            background-color: #c4c0c0;
+			max-width: 500px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		h1 {
+			margin-top: 50px;
+		}
+		form {
+			margin-top: 30px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			font-size: 18px;
+			width: 100%;
+		}
+		button {
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color: #5b16ca;
+			color: white;
+			margin-top: 10px;
+		}
+		#result {
+			margin-top: 30px;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Check your BMI</h1>
+	<form id="bmi-form">
+		<input type="number" id="weight-input" placeholder="Put your weight in here (KG)" step="0.1" />
+		<input type="number" id="height-input" placeholder="And your height in here (CM)" step="0.1" />
+		<button type="button" id="calculate-button">Calculate BMI</button>
+	</form>
+	<div id="result"></div>
+	<script>
+		document.getElementById('calculate-button').addEventListener('click', function() {
+			var weight = document.getElementById('weight-input').value;
+			var height = document.getElementById('height-input').value;
+			var bmi = calculateBMI(weight, height);
+			var weightStatus = getWeightStatus(bmi);
+			document.getElementById('result').innerText = 'BMI: ' + bmi + ' - Weight Status: ' + weightStatus;
+		});
+		function calculateBMI(weight, height) {
+			height = height / 100; // convert height from CM to M
+			var bmi = weight / (height * height);
+			return parseFloat(bmi.toFixed(2));
+		}
+		function getWeightStatus(bmi) {
+			if (bmi < 18.5) {
+				return 'Underweight';
+			} else if (bmi >= 18.5 && bmi < 24.9) {
+				return 'Normal weight';
+			} else if (bmi >= 25 && bmi < 29.9) {
+				return 'Overweight';
+			} else {
+				return 'Obesity';
+			}
+		}
+	</script>
+</body>
+</html>
